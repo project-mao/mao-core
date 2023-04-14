@@ -4,8 +4,9 @@
 
 :root {
     --foreground-rgb: 0, 0, 0;
-    --background-rgb: 233, 233, 240;
+    --background-rgb: 252, 252, 255;
     font-family: "Inter", sans-serif;
+    font-synthesis: none;
 }
 
 @media (prefers-color-scheme: dark) {

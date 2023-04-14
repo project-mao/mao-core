@@ -1,9 +1,8 @@
-import { Divider } from "~/components/daisy";
-import { PAGE_CSS } from "~/mao"
+import { Divider, Page } from "~/components/utils"
 
 export default function Home() {
     return (
-        <main class={PAGE_CSS}>
+        <Page>
             <br/>
             <Divider/>
             <h1 class="font-mono text-slate-500 mb-2">Welcome to</h1>
@@ -12,7 +11,7 @@ export default function Home() {
             <Divider/>
             <br/>
             <ServerStats/>
-        </main>
+        </Page>
     );
 }
 

@@ -15,10 +15,16 @@
     "vite": "^4.1.4"
   },
   "dependencies": {
+    "@auth/solid-start": "^0.1.1",
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.8.2",
+    "@types/node": "^18.15.11",
     "chalk": "^5.2.0",
     "daisyui": "^2.51.5",
+    "dotenv": "^16.0.3",
+    "hash-wasm": "^4.9.0",
+    "mongodb": "^5.2.0",
+    "nanoid": "^4.0.2",
     "solid-js": "^1.7.2",
     "solid-start": "^0.2.26",
     "undici": "^5.15.1",

@@ -12,14 +12,16 @@ import {
     Title,
 } from "solid-start"
 import "./root.css"
-import { Footer, Navbar } from "./components/daisy"
-import { getVersionString } from "./mao"
+import { getVersionString } from "./lib/mao"
 import chalk from "chalk"
 import { isServer } from "solid-js/web"
+import { info } from "./lib/log"
 
-console.log("")
-console.log(chalk.magenta.bold("Project MaO") + " " + getVersionString() + "\n" + ">>> Running on " + (isServer ? "server" : "client") + " build")
-console.log("")
+const str = chalk.magenta.bold("Project MaO") + " " + chalk.greenBright(getVersionString()) + "\n" + "================> Running on " + (isServer ? "server" : "client") + " build"
+
+info("-".repeat(str.length - 25))
+info(str)
+info("-".repeat(str.length - 25))
 
 export default function Root() {
     return (
@@ -32,11 +34,9 @@ export default function Root() {
             <Body>
                 <Suspense>
                     <ErrorBoundary>
-                        <Navbar/>
                         <Routes>
                             <FileRoutes/>
                         </Routes>
-                        <Footer/>
                     </ErrorBoundary>
                 </Suspense>
                 <Scripts/>

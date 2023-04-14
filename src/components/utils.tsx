@@ -1,5 +1,6 @@
+import { JSX, children } from "solid-js"
 import { A, useLocation } from "solid-start"
-import { getVersionString } from "~/mao"
+import { getVersionString } from "~/lib/mao"
 
 export function Divider() {
     return <div class="divider"></div>
@@ -10,13 +11,13 @@ export function Navbar() {
     return (
         <nav class="navbar bg-primary">
             <a class="btn btn-ghost normal-case text-xl text-white font-mono">MaO {getVersionString()}</a>
-                <ul class="container flex items-center p-3 text-gray-200">
-                    <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
-                        <A href="/">Home</A>
-                    </li>
-                    <li class={`border-b-2 ${active("/servers")} mx-1.5 sm:mx-6`}>
-                        <A href="/servers">Servers</A>
-                    </li>
+            <ul class="container flex items-center p-3 text-gray-200">
+                <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
+                    <A href="/">Home</A>
+                </li>
+                <li class={`border-b-2 ${active("/servers")} mx-1.5 sm:mx-6`}>
+                    <A href="/servers">Servers</A>
+                </li>
               </ul>
         </nav>
     );
@@ -38,5 +39,17 @@ export function Footer() {
                 </div>
             </div>
         </footer>
+    )
+}
+
+export function Page(props: { children: any, noNavbar?: boolean }) {
+    const inc = props.noNavbar != undefined ? !props.noNavbar : true
+    return (
+        <>
+            {inc ? <Navbar/> : <></>}
+            <main class="text-center mx-auto p-4 flex min-h-screen flex-col items-center">
+                {children(() => props.children)()}
+            </main>
+        </>
     )
 }

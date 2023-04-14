@@ -1,14 +1,14 @@
-import { Divider } from "~/components/daisy"
-import { PAGE_CSS } from "~/mao"
+import { Divider, Page } from "~/components/utils"
+import { PAGE_CSS } from "~/lib/mao"
 
 export default function ServerListing() {
     return (
-        <main class={PAGE_CSS}>
+        <Page>
             <br/>
             <Divider/>
             <h1 class="text-6xl font-mono">Servers</h1>
             <Divider/>
             <br/>
-        </main>
+        </Page>
     );
 }
