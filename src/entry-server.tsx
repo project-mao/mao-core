@@ -6,10 +6,6 @@ import chalk from "chalk"
 import { User, createUser, getUserFromSession } from "~/lib/db/auth"
 import { redirect } from "solid-start"
 
-const protectedPaths = [
-    "/"
-]
-
 info("Configuring dotenv")
 dotenv.config()
 
@@ -26,14 +22,14 @@ export default createHandler(
     ({ forward }) => {
         return async event => {
             const pathname = new URL(event.request.url).pathname
-            if(
-                pathname != "/auth/login" && !pathname.includes("/_m")
-            ) {
-                const user = await getUserFromSession(event.request.headers.get("Cookie") ?? "")
-                console.log("User: " + user)
+            const user = await getUserFromSession(event.request.headers.get("Cookie")?.replaceAll(" ", "").split("=")[1] ?? "")
+            if(pathname != "/auth/login" && !pathname.includes("/_m")) {
                 if(user == null) {
-                    console.log("Yes")
                     return redirect("/auth/login")
+                }
+            } else {
+                if(pathname == "/auth/login" && user != null) {
+                    return redirect("/")
                 }
             }
             return forward(event)

@@ -1,5 +1,4 @@
-import { Page } from "~/components/utils"
-import { PAGE_CSS } from "~/lib/mao"
+import { Page } from "~/components/common"
 
 export default function NotFound() {
     return (

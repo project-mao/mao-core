@@ -1,5 +1,4 @@
-import { Divider, Page } from "~/components/utils"
-import { PAGE_CSS } from "~/lib/mao"
+import { Divider, Page } from "~/components/common"
 
 export default function ServerListing() {
     return (

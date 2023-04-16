@@ -10,17 +10,19 @@ export function Navbar() {
     const active = (path: string) => path == useLocation().pathname ? "border-sky-600" : "border-transparent hover:border-sky-600";
     return (
         <nav class="navbar bg-primary">
-            <a class="btn btn-ghost normal-case text-xl text-white font-mono">MaO {getVersionString()}</a>
-            <ul class="container flex items-center p-3 text-gray-200">
-                <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
-                    <A href="/">Home</A>
-                </li>
-                <li class={`border-b-2 ${active("/servers")} mx-1.5 sm:mx-6`}>
-                    <A href="/servers">Servers</A>
-                </li>
-              </ul>
+            <div class="flex-1">
+                <A class="btn btn-ghost normal-case text-xl text-white font-mono" href="/">MaO {getVersionString()}</A>
+                <ul class="container flex items-center p-3 text-gray-200">
+                    <li class={`border-b-2 ${active("/servers")} mx-1.5 sm:mx-6`}>
+                        <A href="/servers">Servers</A>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-none">
+                
+            </div>
         </nav>
-    );
+    )
 }
 
 export function Footer() {

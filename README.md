@@ -11,6 +11,7 @@ To initialize a development server, use `pnpm dev`.
 ## Database
 
 > **INFO** It is recommended to use a database which only stores data for MaO.
+> Also, please ensure that the MongoDB instance allows connections through IPv6.
 
 MaO uses MongoDB for:
 

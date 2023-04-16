@@ -87,9 +87,9 @@ export async function createUser(username: string, password: string) {
             password: await argon2id({
                 password: password,
                 salt: (await import("crypto")).randomBytes(64),
-                parallelism: 1,
-                iterations: 2,
-                memorySize: 19923,
+                parallelism: 1, // owasp recommendations
+                iterations: 2, // owasp recommendations
+                memorySize: 19923, // owasp recommendations
                 hashLength: 32,
                 outputType: 'encoded',
             })
@@ -106,7 +106,7 @@ export async function getUserFromSession(session: string): Promise<string | null
         const sessCol = getDB().collection(SESSION_COLLECTION)
         const sessionObject = await sessCol.findOne({
             sessionID: session
-        }) as unknown as { username: string } | null
-        return sessionObject ? sessionObject.username : null
+        }) as unknown as { user: string } | null
+        return sessionObject ? sessionObject.user : null
     })(session)
 }

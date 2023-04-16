@@ -1,5 +1,6 @@
 import chalk from "chalk"
-import { createRouteAction } from "solid-start"
+import { setCookie } from "typescript-cookie"
+import { APIEvent, createRouteAction } from "solid-start"
 import { createServerData$, redirect } from "solid-start/server"
 import { loginUser } from "~/lib/db/auth"
 import { info } from "~/lib/log"
@@ -8,15 +9,22 @@ import { getVersionString } from "~/lib/mao"
 export default function LoginPage() {
     const nodeVersion = createServerData$(() => process.versions.node)()!
     const [_, { Form }] = createRouteAction(async (formData: FormData) => {
-        await new Promise((resolve, reject) => setTimeout(resolve, 1000))
+        await new Promise((resolve) => setTimeout(resolve, 1000))
         const username = formData.get("username")
         const password = formData.get("password")
         if(username && password) {
             const sessionID: string | null = await loginUser(username.toString(), password.toString())
             if(sessionID) {
                 info("Session ID is " + chalk.greenBright.bold(sessionID)) 
-                document.cookie = `sessionID = ${sessionID};`
-                return redirect("/")
+                setCookie("sessionID", sessionID, {
+                    path: "/",
+                    sameSite: "lax"
+                })
+                return redirect("/", {
+                    headers: {
+                        "Set-Cookie": `sessionID=${sessionID}`
+                    }
+                })
             }
         }
     })

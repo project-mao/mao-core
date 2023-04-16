@@ -1,7 +1,6 @@
 import { useParams } from "solid-start"
 import "xterm/css/xterm.css"
-import { Divider, Page } from "~/components/utils"
-import { PAGE_CSS } from "~/lib/mao"
+import { Divider, Page } from "~/components/common"
 
 export default function ServerPage() {
     const { serverId } = useParams<{ serverId: string }>()

@@ -1,4 +1,4 @@
-import { Divider, Page } from "~/components/utils"
+import { Divider, Page } from "~/components/common"
 
 export default function Home() {
     return (
